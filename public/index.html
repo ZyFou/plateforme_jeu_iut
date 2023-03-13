@@ -103,12 +103,12 @@
       // Handle incoming chat messages
       const messages = document.getElementById('messages');
       socket.on('chat message', (data) => {
-      const li = document.createElement('li');
-      const today = new Date();
-      const hour = today.getHours();
-      const ampm = hour >= 12 ? 'PM' : 'AM';
-      const formattedHour = hour % 12 || 12;
-      const formattedTime = `${formattedHour}:${today.getMinutes()} ${ampm}`;
+        const li = document.createElement('li');
+        const today = new Date();
+        const hour = today.getHours();
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const formattedHour = hour % 12 || 12;
+        const formattedTime = `${formattedHour}:${today.getMinutes()} ${ampm}`;
 
         li.textContent = `${formattedTime} | ${data.id}: ${data.msg} `;
         messages.appendChild(li);
