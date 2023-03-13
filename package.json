@@ -1,0 +1,20 @@
+{
+  "name": "plateforme_jeu",
+  "version": "1.0.0",
+  "description": "plateforme de jeu multijoueur",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZyFou/plateforme_jeu_iut.git"
+  },
+  "author": "GRK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZyFou/plateforme_jeu_iut/issues"
+  },
+  "homepage": "https://github.com/ZyFou/plateforme_jeu_iut#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  }
+}

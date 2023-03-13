@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-time chat</title>
+    <style>
+      /* body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+      }
+
+      #messages {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        height: 400px;
+        overflow-y: scroll;
+        border-bottom: 1px solid #ccc;
+      }
+
+      #messages li {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+      }
+
+      #messages li span {
+        font-weight: bold;
+        color: #333;
+      }
+
+      #message-form {
+        display: flex;
+        align-items: center;
+      }
+
+      #message-input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      #btn-send {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      #btn-send:hover {
+        background-color: #3e8e41;
+      } */
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container">
+      <h1>Real-time chat</h1>
+      <ul id="messages"></ul>
+      <form id="message-form">
+        <input id="message-input" type="text" autocomplete="off" />
+        <button id="btn-send">Send</button>
+      </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+      const socket = io();
+      
+
+      // Handle chat form submission
+      const form = document.getElementById('message-form');
+      const input = document.getElementById('message-input');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const msg = input.value.trim();
+        if (msg) {
+          socket.emit('chat message', msg);
+          input.value = '';
+        }
+      });
+
+
+      // Handle incoming chat messages
+      const messages = document.getElementById('messages');
+      socket.on('chat message', (data) => {
+      const li = document.createElement('li');
+      const today = new Date();
+      const hour = today.getHours();
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const formattedHour = hour % 12 || 12;
+      const formattedTime = `${formattedHour}:${today.getMinutes()} ${ampm}`;
+
+        li.textContent = `${formattedTime} | ${data.id}: ${data.msg} `;
+        messages.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
